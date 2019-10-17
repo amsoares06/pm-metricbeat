@@ -1,0 +1,10 @@
+---
+metricbeat::install::metricbeat_package: 'metricbeat'
+metricbeat::install::metricbeat_ensure: 'present'
+metricbeat::install::metricbeat_repo: 'https://artifacts.elastic.co/packages/7.x/yum'
+
+metricbeat::config::logging_level: 'debug'
+metricbeat::config::logging_selectors: 'service'
+
+metricbeat::service::service_ensure: 'running'
+metricbeat::service::service_enable: true
