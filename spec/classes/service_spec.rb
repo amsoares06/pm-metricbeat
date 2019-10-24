@@ -7,11 +7,12 @@ describe 'metricbeat::service' do
 
       it { is_expected.to compile }
       it { is_expected.to contain_class('metricbeat::service') }
-      it { is_expected.to contain_service('metricbeat')
-        .with(
-          'ensure' => 'running',
-          'enable' => 'true',
-        )
+      it {
+        is_expected.to contain_service('metricbeat')
+          .with(
+            'ensure' => 'running',
+            'enable' => 'true',
+          )
       }
     end
 
@@ -19,14 +20,15 @@ describe 'metricbeat::service' do
       let(:facts) do
         os_facts.merge('hiera_file' => 'custom')
       end
-  
+
       it { is_expected.to compile }
       it { is_expected.to contain_class('metricbeat::service') }
-      it { is_expected.to contain_service('metricbeat')
-        .with(
-          'ensure' => 'running',
-          'enable' => 'false',
-        )
+      it {
+        is_expected.to contain_service('metricbeat')
+          .with(
+            'ensure' => 'running',
+            'enable' => 'false',
+          )
       }
     end
   end

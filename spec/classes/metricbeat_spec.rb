@@ -10,7 +10,7 @@ describe 'metricbeat' do
         is_expected.to contain_class('metricbeat::install')
           .that_comes_before('Class[metricbeat::config]')
       }
-      
+
       it {
         is_expected.to contain_class('metricbeat::config')
           .that_comes_before('Class[metricbeat::service]')

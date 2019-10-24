@@ -7,19 +7,21 @@ describe 'metricbeat::install' do
 
       it { is_expected.to compile }
       it { is_expected.to contain_class('metricbeat::install') }
-      it { is_expected.to contain_yumrepo('elastic-7.x')
-        .with(
-          'ensure'   => 'present',
-          'descr'    => 'Elastic repository for 7.x packages',
-          'baseurl'  => 'https://artifacts.elastic.co/packages/7.x/yum',
-          'enabled'  => 'true',
-          'gpgcheck' => 'false',
-        )
+      it {
+        is_expected.to contain_yumrepo('elastic-7.x')
+          .with(
+            'ensure'   => 'present',
+            'descr'    => 'Elastic repository for 7.x packages',
+            'baseurl'  => 'https://artifacts.elastic.co/packages/7.x/yum',
+            'enabled'  => 'true',
+            'gpgcheck' => 'false',
+          )
       }
-      it { is_expected.to contain_package('metricbeat')
-        .with(
-          'ensure' => 'present',
-        )
+      it {
+        is_expected.to contain_package('metricbeat')
+          .with(
+            'ensure' => 'present',
+          )
       }
     end
 
@@ -30,19 +32,21 @@ describe 'metricbeat::install' do
 
       it { is_expected.to compile }
       it { is_expected.to contain_class('metricbeat::install') }
-      it { is_expected.to contain_yumrepo('elastic-7.x')
-        .with(
-          'ensure'   => 'present',
-          'descr'    => 'Elastic repository for 7.x packages',
-          'baseurl'  => 'https://some.thing.nl/packages/7.x/yum',
-          'enabled'  => 'true',
-          'gpgcheck' => 'false',
-        )
+      it {
+        is_expected.to contain_yumrepo('elastic-7.x')
+          .with(
+            'ensure'   => 'present',
+            'descr'    => 'Elastic repository for 7.x packages',
+            'baseurl'  => 'https://some.thing.nl/packages/7.x/yum',
+            'enabled'  => 'true',
+            'gpgcheck' => 'false',
+          )
       }
-      it { is_expected.to contain_package('metricbeat')
-        .with(
-          'ensure' => 'latest',
-        )
+      it {
+        is_expected.to contain_package('metricbeat')
+          .with(
+            'ensure' => 'latest',
+          )
       }
     end
   end

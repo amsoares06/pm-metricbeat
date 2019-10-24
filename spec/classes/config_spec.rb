@@ -7,25 +7,27 @@ describe 'metricbeat::config' do
 
       it { is_expected.to compile }
       it { is_expected.to contain_class('metricbeat::config') }
-      it { is_expected.to contain_file('/etc/metricbeat/metricbeat.yml')
-        .with_content(/This file is managed by Puppet/)
-        .with_content(/logging.level: debug/)
-        .with_content(/logging.selectors: \["service"\]/)
+      it {
+        is_expected.to contain_file('/etc/metricbeat/metricbeat.yml')
+          .with_content(%r{This file is managed by Puppet})
+          .with_content(%r{logging.level: debug})
+          .with_content(%r{logging.selectors: \["service"\]})
       }
     end
-  
-  context "on #{os} with custom hieradata" do
-    let(:facts) do
-      os_facts.merge('hiera_file' => 'custom')
-    end
 
-    it { is_expected.to compile }
-    it { is_expected.to contain_class('metricbeat::config') }
-    it { is_expected.to contain_file('/etc/metricbeat/metricbeat.yml')
-      .with_content(/This file is managed by Puppet/)
-      .with_content(/logging.level: warning/)
-      .with_content(/logging.selectors: \["\*"\]/)
-    }
+    context "on #{os} with custom hieradata" do
+      let(:facts) do
+        os_facts.merge('hiera_file' => 'custom')
+      end
+
+      it { is_expected.to compile }
+      it { is_expected.to contain_class('metricbeat::config') }
+      it {
+        is_expected.to contain_file('/etc/metricbeat/metricbeat.yml')
+          .with_content(%r{This file is managed by Puppet})
+          .with_content(%r{logging.level: warning})
+          .with_content(%r{logging.selectors: \["\*"\]})
+      }
     end
   end
 end
