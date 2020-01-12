@@ -14,3 +14,5 @@ class metricbeat {
   -> Class['metricbeat::config']
   ~> Class['metricbeat::service']
 }
+
+# test comment
